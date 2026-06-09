@@ -1,0 +1,177 @@
+/* ============================================================
+   INETAM – app.css
+   ============================================================ */
+
+:root {
+  --primary:    #1a5276;
+  --primary-lt: #2e86c1;
+  --success:    #1e8449;
+  --gold:       #c9a227;
+  --light-bg:   #f4f6f9;
+  --card-bg:    #ffffff;
+  --text:       #1c2333;
+  --muted:      #6c757d;
+  --border:     #dee2e6;
+  --shadow:     0 2px 12px rgba(0,0,0,.08);
+}
+
+/* ── Global ── */
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--light-bg);
+  color: var(--text);
+  font-size: .9rem;
+}
+
+/* ── Navbar ── */
+.navbar {
+  background: linear-gradient(135deg, var(--primary) 0%, #0d2137 100%);
+  padding: .6rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+.navbar-escudo img { filter: drop-shadow(0 0 4px rgba(201,162,39,.6)); }
+.navbar-brand-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+.navbar-brand-sub { font-size: .7rem; color: rgba(255,255,255,.7); letter-spacing: .5px; }
+
+/* ── Stat Cards ── */
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--card-bg);
+  border-radius: .75rem;
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow);
+  border-left: 5px solid transparent;
+  transition: transform .2s;
+}
+.stat-card:hover { transform: translateY(-2px); }
+.stat-total    { border-color: var(--primary); }
+.stat-academico{ border-color: #8e44ad; }
+.stat-tecnico  { border-color: var(--success); }
+.stat-tic      { border-color: #d35400; }
+
+.stat-icon {
+  font-size: 1.8rem;
+  opacity: .85;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+.stat-academico .stat-icon { color: #8e44ad; }
+.stat-tecnico   .stat-icon { color: var(--success); }
+.stat-tic       .stat-icon { color: #d35400; }
+
+.stat-num { font-size: 1.6rem; font-weight: 700; line-height: 1; }
+.stat-label { font-size: .73rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+
+/* ── Card ── */
+.card {
+  border: 1px solid var(--border);
+  border-radius: .75rem;
+  overflow: hidden;
+}
+.card-header {
+  background: var(--primary);
+  color: #fff;
+  padding: .9rem 1.25rem;
+  border-bottom: none;
+}
+
+/* ── DataTable ── */
+#tablaEstudiantes thead th {
+  background: #f8f9fa;
+  font-size: .78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--primary);
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+}
+#tablaEstudiantes tbody tr:hover { background: rgba(26,82,118,.04); }
+#tablaEstudiantes td { vertical-align: middle; font-size: .85rem; }
+
+/* Badge para título */
+.badge-titulo {
+  font-size: .72rem;
+  font-weight: 500;
+  padding: .25rem .55rem;
+  border-radius: .4rem;
+}
+.titulo-academico { background: rgba(142,68,173,.12); color: #6c3483; }
+.titulo-tecnico   { background: rgba(30,132,73,.12);  color: #1e8449; }
+.titulo-tic       { background: rgba(211,84,0,.12);   color: #d35400; }
+
+/* Botones PDF */
+.btn-pdf {
+  background: #c0392b;
+  color: #fff;
+  border: none;
+  font-size: .75rem;
+  padding: .25rem .6rem;
+  border-radius: .4rem;
+  transition: background .15s;
+}
+.btn-pdf:hover { background: #96281b; color: #fff; }
+
+.btn-group-docs .btn { font-size: .72rem; padding: .2rem .45rem; }
+
+/* ── Section dividers in modal ── */
+.section-title {
+  font-size: .78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: .3rem;
+  margin: 1rem 0 .75rem;
+}
+
+/* Required asterisk */
+.form-label.required::after { content: ' *'; color: #dc3545; }
+
+/* ── Logo upload area ── */
+.logo-upload-area {
+  border: 2px dashed var(--border);
+  border-radius: .5rem;
+  padding: 1rem;
+  text-align: center;
+  background: #fafafa;
+  cursor: pointer;
+  transition: border-color .2s;
+  margin-bottom: 1rem;
+}
+.logo-upload-area:hover { border-color: var(--primary); }
+.logo-preview img { max-height: 80px; max-width: 160px; }
+
+/* ── Loading overlay ── */
+#loadingOverlay {
+  position: fixed; inset: 0;
+  background: rgba(255,255,255,.92);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity .3s;
+}
+#loadingOverlay .load-logo { font-size: 4rem; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.05)} }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .container-fluid { padding: .5rem; }
+  .btn-group-docs { flex-wrap: wrap; }
+}
+
+/* ── DataTables toolbar fix ── */
+.dataTables_wrapper .dataTables_filter input { border-radius: .4rem; border: 1px solid var(--border); padding: .25rem .6rem; }
+.dataTables_wrapper .dataTables_length select { border-radius: .4rem; border: 1px solid var(--border); }

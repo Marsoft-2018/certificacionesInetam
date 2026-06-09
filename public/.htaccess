@@ -1,0 +1,11 @@
+Options -Indexes +FollowSymLinks
+DirectoryIndex index.php index.html
+
+RewriteEngine On
+
+# Servir archivos y directorios reales directamente
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Todo lo demás va al front controller
+RewriteRule ^ index.php [QSA,L]
